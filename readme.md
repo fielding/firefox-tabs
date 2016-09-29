@@ -1,5 +1,4 @@
-# firefox-tabs [![Build Status](https://travis-ci.org/justfielding/firefox-tabs.svg?branch=master)](https://travis-ci.org/justfielding/firefox-tabs)
-
+# firefox-tabs [![Build Status](https://travis-ci.org/justfielding/firefox-tabs.svg?branch=master)](https://travis-ci.org/justfielding/firefox-tabs)[![Coverage Status](https://coveralls.io/repos/github/justfielding/firefox-tabs/badge.svg?branch=master)](https://coveralls.io/github/justfielding/firefox-tabs?branch=master)
 > Get Firefox tab information from sessionstore's recovery.js file.
 
 
