@@ -17,8 +17,17 @@ function getFirefoxProfilePath() {
     ffConfDir = process.platform === 'darwin' ? osHomedir() + '/Library/Application Support/Firefox/' : osHomedir() + '/.mozilla/firefox/';
   }
 
-  const profilePath = ini.parse(fs.readFileSync(ffConfDir + 'profiles.ini', 'utf-8')).Profile0.Path;
-  return ffConfDir + profilePath;
+  let profile;
+  try {
+    profile = ini.parse(fs.readFileSync(ffConfDir + 'profiles2.ini', 'utf-8')).Profile0.Path;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log('Unable to read Firefox\'s profiles.ini configuration.');
+    } else {
+      throw err;
+    }
+  }
+  return ffConfDir + profile;
 }
 
 const parse = buf => {
@@ -43,9 +52,21 @@ const parse = buf => {
 module.exports = () => fsP.readFile(file)
   .then(parse)
   .catch(err => {
-    throw err;
+    if (err.code === 'ENOENT') {
+      console.log('Failed to load Firefox session data from sessionstore-backup/recovery.js');
+    } else {
+      throw err;
+    }
   });
 
 module.exports.sync = () => {
-  return parse(fs.readFileSync(file), 'utf8');
+  try {
+    return parse(fs.readFileSync(file), 'utf8');
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log('Failed to load Firefox session data from sessionstore-backup/recovery.js');
+    } else {
+      throw err;
+    }
+  }
 };
