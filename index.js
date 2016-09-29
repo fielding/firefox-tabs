@@ -53,10 +53,14 @@ module.exports = () => fsP.readFile(file)
   .then(parse)
   .catch(err => {
     if (err.code === 'ENOENT') {
-      console.log('Failed to load Firefox session data from sessionstore-backup/recovery.js');
-    } else {
-      throw err;
+      return {
+        deviceName: os.hostname(),
+        modified: new Date(),
+        tabCount: 0,
+        tabs: []
+      };
     }
+    throw err;
   });
 
 module.exports.sync = () => {
@@ -64,9 +68,13 @@ module.exports.sync = () => {
     return parse(fs.readFileSync(file), 'utf8');
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.log('Failed to load Firefox session data from sessionstore-backup/recovery.js');
-    } else {
-      throw err;
+      return {
+        deviceName: os.hostname(),
+        modified: new Date(),
+        tabCount: 0,
+        tabs: []
+      };
     }
+    throw err;
   }
 };
