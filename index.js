@@ -19,7 +19,7 @@ function getFirefoxProfilePath() {
 
   let profile;
   try {
-    profile = ini.parse(fs.readFileSync(ffConfDir + 'profiles2.ini', 'utf-8')).Profile0.Path;
+    profile = ini.parse(fs.readFileSync(ffConfDir + 'profiles.ini', 'utf-8')).Profile0.Path;
   } catch (err) {
     if (err.code === 'ENOENT') {
       console.log('Unable to read Firefox\'s profiles.ini configuration.');
