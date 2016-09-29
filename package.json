@@ -1,0 +1,40 @@
+{
+  "name": "firefox-tabs",
+  "version": "0.1.0",
+  "description": "Get Firefox tab information from sessionstore's recovery.js file.",
+  "keywords": [
+    "firefox",
+    "tabs"
+  ],
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Fielding Johnston",
+    "email": "fielding@justfielding.com",
+    "url": "https://justfielding.com"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "repository": "justfielding/firefox-tabs",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "semicolon": true,
+    "space": 2
+  },
+  "dependencies": {
+    "ini": "^1.3.4",
+    "os-homedir": "^1.0.1",
+    "pify": "^2.3.0"
+  }
+}
