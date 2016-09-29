@@ -49,7 +49,7 @@ Returns an array of `devices`.
 
 ## Related
 
-- [active-win-cli](https://github.com/sindresorhus/active-win-cli) - CLI for this module
+- [firefox-tabs-cli](https://github.com/justfielding/firefox-tabs-cli) - CLI for this module
 
 ## License
 
