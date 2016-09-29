@@ -1,6 +1,6 @@
 {
   "name": "firefox-tabs",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Get Firefox tab information from sessionstore's recovery.js file.",
   "keywords": [
     "firefox",
