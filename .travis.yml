@@ -5,5 +5,17 @@ language: node_js
 node_js:
   - '6'
   - '4'
+before_script:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then mkdir -p "/Users/travis/Library/Application Support/Firefox/Profiles/swya5bqo.default-1438630218501/sessionstore-backups/"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cp fixtures/profiles.ini "/Users/travis/Library/Application Support/Firefox/profiles.ini"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cp fixtures/recovery.js "/Users/travis/Library/Application Support/Firefox/Profiles/swya5bqo.default-1438630218501/sessionstore-backups/recovery.js"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then mkdir -p "/home/travis/.mozilla/firefox/Profiles/swya5bqo.default-1438630218501/sessionstore-backups/"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cp fixtures/profiles.ini "/home/travis/.mozilla/firefox/profiles.ini"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cp fixtures/recovery.js "/home/travis/.mozilla/firefox/Profiles/swya5bqo.default-1438630218501/sessionstore-backups/recovery.js"; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then less /Users/travis/Library/Application\ Support/Firefox/profiles.ini; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then less /Users/travis/Library/Application\ Support/Firefox/Profiles/swy5bgo.default-1438630218501/sessionstore-backups/recovery.js; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ls /home/travis/.mozzila; fi
+  # # - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then less /home/travis/.mozilla/firefox/profiles.ini; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then less /home/travis/.mozilla/firefox/profiles/swya5bqo.default-1438630218501/sessionstore-backups/recovery.js; fi
 after_script:
   - 'cat coverage/lcov.info | ./node_modules/.bin/coveralls'

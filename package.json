@@ -18,7 +18,7 @@
   "main": "index.js",
   "repository": "justfielding/firefox-tabs",
   "scripts": {
-    "test": "xo && nyc ava",
+    "test": "xo && nyc ava --verbose",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {

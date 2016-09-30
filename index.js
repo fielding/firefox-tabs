@@ -6,7 +6,6 @@ const osHomedir = require('os-homedir');
 const pify = require('pify');
 
 const fsP = pify(fs);
-const file = getFirefoxProfilePath() + '/sessionstore-backups/recovery.js';
 
 function getFirefoxProfilePath() {
   let ffConfDir;
@@ -30,6 +29,8 @@ function getFirefoxProfilePath() {
   return ffConfDir + profile;
 }
 
+const file = getFirefoxProfilePath() + '/sessionstore-backups/recovery.js';
+
 const parse = buf => {
   const session = JSON.parse(buf);
   const tabs = [];
@@ -49,10 +50,11 @@ const parse = buf => {
   };
 };
 
-module.exports = () => fsP.readFile(file)
+module.exports = () => fsP.readFile(file, 'utf8')
   .then(parse)
   .catch(err => {
     if (err.code === 'ENOENT') {
+      console.log('Unable to parse recovery.js. Returning empty session data object.');
       return {
         deviceName: os.hostname(),
         modified: new Date(),
@@ -65,9 +67,10 @@ module.exports = () => fsP.readFile(file)
 
 module.exports.sync = () => {
   try {
-    return parse(fs.readFileSync(file), 'utf8');
+    return parse(fs.readFileSync(file, 'utf8'));
   } catch (err) {
     if (err.code === 'ENOENT') {
+      console.log('Unable to parse recovery.js. Returning empty session data object.');
       return {
         deviceName: os.hostname(),
         modified: new Date(),
