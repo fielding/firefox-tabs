@@ -49,7 +49,7 @@ Returns an array of `devices`.
 
 ## Related
 
-- [firefox-tabs-cli](https://github.com/justfielding/firefox-tabs-cli) - CLI for this module
+- [firefox-tabs-cli](https://github.com/justfielding/firefox-tabs-cli) - Get Firefox tab information from sessionstore's recovery.js file via command line
 
 ## License
 
